@@ -1,0 +1,7 @@
+---
+
+- name: provision angular frontend
+  hosts: angular-web
+  roles:
+    - angular/frontend
+

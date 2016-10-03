@@ -1,0 +1,37 @@
+#install dependent role from galaxy
+
+#nodejs
+- src: jskswamy.nodejs
+
+#nginx
+- src: jskswamy.nginx
+
+#go.cd
+- src: dnivra26.gocd
+
+#epel repo
+- src: geerlingguy.repo-epel
+
+#daemonize package to run service app as a daemon using init.d
+- src: geerlingguy.daemonize
+
+#install oracle java 8 dependencies
+- src: ansiblebit.oracle-java
+
+#install development tools required for daemonize in centos
+- src: tcosta84.yum
+
+#install ruby
+- src: dnivra26.ruby-1
+
+#install monit
+- src: williamyeh.monit
+
+#install wkthmltopdf
+- src: AerisCloud.wkhtmltopdf
+
+#install newrelic server monitoring agent
+- src: jskswamy.newrelic
+
+#install ntp server
+- src: geerlingguy.ntp

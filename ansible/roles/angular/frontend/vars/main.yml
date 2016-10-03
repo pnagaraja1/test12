@@ -1,0 +1,5 @@
+port: 3200
+app_name: angular-project
+angular_app_root: angular
+angular_web_root: angular
+angular_pkg_root: angular

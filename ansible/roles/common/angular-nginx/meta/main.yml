@@ -1,0 +1,18 @@
+---
+dependencies:
+  - role: common/zip
+
+  - role: jskswamy.nodejs
+    ansible_nodejs_version: "{{nodejs_version}}"
+    ansible_nodejs_sha256sum: "{{nodejs_sha256sum}}"
+    ansible_nodejs_global_pkgs:
+      - pm2
+
+  - role: jskswamy.nginx
+    sudo: true
+    nginx_worker_processes: "{{ansible_processor_cores}}"
+    nginx_remove_default_vhost: true
+    nginx_user: "{{ansible_user_id}}"
+
+  - role: common/angular_bundle
+    angular_app_name: "{{app_name}}"

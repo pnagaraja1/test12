@@ -1,0 +1,24 @@
+---
+dependencies:
+  - role: common/angular-nginx
+    angular_app_base_dirs:
+      - "{{angular_app_root}}"
+      - "{{angular_web_root}}"
+    #express_config:
+      #newrelic_app_name: "{{ newrelic_app_name }}"
+      #shark_host: "{{ shark_host }}"
+      #encompass_host: "{{ encompass_host }}"
+      #oods_host: "{{ oods_host }}"
+      #sods_host: "{{ sods_host }}"
+      #elasticsearch: "{{ elasticsearch_host }}"
+      #strategy: "{{ strategy }}"
+      #auth:
+       # entryPoint: "{{ auth_entryPoint | default('entry') }}"
+       # cert: "{{ auth_cert | default('cert') }}"
+      #redis:
+      #  host: "{{ redis_host }}"
+      #  password: "{{ redis_password }}"
+      #graylog:
+      #  host: "{{ graylog_host }}"
+      #  port: "{{ graylog_web_port }}"
+      #access_token: "{{ shark_auth_token }}"

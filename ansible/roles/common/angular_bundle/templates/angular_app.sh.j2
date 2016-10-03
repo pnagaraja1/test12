@@ -1,0 +1,67 @@
+#!/bin/bash
+#
+# {{angular_app_name}} startup script
+#
+# description: startup script for {{angular_app_name}}
+# processname: {{angular_app_name}}
+#
+### BEGIN INIT INFO
+# Provides: {{angular_app_name}}
+# Required-Start: $local_fs $remote_fs
+# Required-Stop:  $local_fs $remote_fs
+# Should-Start:   $network
+# Should-Stop:    $network
+# Default-Start:  2 3 4 5
+# Default-Stop:   0 1 6
+# Short-Description: {{angular_app_name}} init script
+# Description: statup script for {{angular_app_name}}
+### END INIT INFO
+
+NAME={{angular_app_name}}
+PM2={{nodejs_path}}/pm2
+USER={{ansible_user_id}}
+
+export PATH={{nodejs_path}}:/usr/local/bin/:$PATH
+export PM2_HOME="~/.pm2"
+
+lockfile="/var/lock/subsys/sphinx.sh"
+cd {{angular_web_root}}/current
+
+super() {
+    su $USER -c "PATH=$PATH; PM2_HOME=$PM2_HOME $*"
+}
+
+start() {
+    echo "Starting $NAME"
+    super $PM2 start ecosystem.json
+    retval=$?
+    [ $retval -eq 0 ] && touch $lockfile
+}
+
+stop() {
+    echo "Stopping $NAME"
+    super $PM2 delete ecosystem.json
+    rm -f $lockfile
+}
+
+restart() {
+    echo "Restarting $NAME"
+    super $PM2 restart ecosystem.json
+}
+
+case "$1" in
+    start)
+        start
+        ;;
+    stop)
+        stop
+        ;;
+    restart)
+        restart
+        ;;
+    *)
+        echo "Usage: {start|stop|restart}"
+        exit 1
+        ;;
+esac
+exit $RETVAL

@@ -1,0 +1,13 @@
+---
+  - name: register startup script for angular app
+    command: chkconfig --add {{angular_app_name}}.sh
+    sudo: yes
+
+  - name: start angular app
+    command: service {{angular_app_name}} start
+    sudo: yes
+
+  - name: restart angular app
+    command: service {{angular_app_name}} restart
+    sudo: yes
+    

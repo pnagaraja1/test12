@@ -1,0 +1,12 @@
+{
+  "apps" : [
+    {
+      "name": "{{angular_app_name}}",
+      "script": "{{angular_web_root}}/current/server.js",
+      "args": ["--env={{node_env}}"],
+      "env": {
+        "DEBUG": "fetch:*"
+      },
+    }
+  ]
+}

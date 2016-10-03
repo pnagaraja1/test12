@@ -1,0 +1,8 @@
+angular_app_name: angular
+nodejs_version: v5.11.1
+angular_web_root: /var/www/{{angular_app_name}}
+angular_app_name: angular_frontend
+angular_app_package_name: angular
+angular_app_root: "{{angular_app_package_name}}"
+angular_pkg_root: "{{angular_app_package_name}}"
+node_env: "development"

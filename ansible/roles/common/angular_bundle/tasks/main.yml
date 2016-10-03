@@ -1,0 +1,49 @@
+---
+  - set_fact: timestamp="{{lookup('pipe','date +%Y%m%d%H%M%S')}}"
+  - set_fact: app_path="{{angular_web_root}}/releases/{{timestamp}}"
+
+  - name: install http-tool
+    yum: name=httpd-tools state=present
+    sudo: yes
+
+  - name: add startup script for angular app
+    template: src=angular_app.sh.j2 dest=/etc/init.d/{{angular_app_name}}.sh mode=u+x
+    sudo: yes
+    notify:
+      - register startup script for angular app
+      - start angular app
+
+  - name: create necessary directories
+    file: path={{item}} state=directory owner={{ansible_user_id}} group={{ansible_user_id}}
+    sudo: yes
+    with_items:
+      - "{{angular_app_base_dirs}}"
+      - "{{angular_web_root}}/releases"
+      - "{{angular_web_root}}/releases/{{timestamp}}"
+      - "{{angular_web_root}}/releases/{{timestamp}}/logs"
+
+  - name: copy angular app package
+    copy: src={{angular_pkg_root}}/{{angular_app_package_name}}-{{node_env}}.zip dest={{angular_app_root}}/{{angular_app_package_name}}-{{node_env}}.zip owner={{ansible_user_id}} group={{ansible_user_id}}
+    sudo: yes
+
+  - name: extract angular app
+    unarchive:
+      src="{{angular_app_root}}/{{angular_app_package_name}}-{{node_env}}.zip"
+      dest="{{app_path}}"
+      owner={{ansible_user_id}}
+      group={{ansible_user_id}}
+      copy=no
+
+  - name: copy express configuration
+    template: src=config.json.j2 dest={{app_path}}/{{angular_app_packaged_app_name}}/config/{{node_env}}.json
+
+  - name: install necessary node packages
+    npm: path={{app_path}}/{{angular_app_packaged_app_name}} production=yes
+
+  - name: generate angular app pm2 ecosystem
+    template: src=ecosystem.json.j2 dest={{app_path}}/{{angular_app_packaged_app_name}}/ecosystem.json
+    notify:
+      - restart angular app
+
+  - name: make recent release as current
+    file: src={{app_path}}/{{angular_app_packaged_app_name}} dest={{angular_web_root}}/current owner={{ansible_user_id}} group={{ansible_user_id}} state=link

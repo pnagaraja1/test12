@@ -1,0 +1,11 @@
+---
+  - name: Ensure Development Tools are installed
+    sudo: yes
+    yum: name="@Development tools" state=present
+
+  - name: install zip archive utility
+    sudo: yes
+    yum: name={{ item }} state=present
+    with_items:
+      - zip
+      - unzip

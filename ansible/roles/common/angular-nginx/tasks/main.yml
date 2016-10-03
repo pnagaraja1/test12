@@ -1,0 +1,9 @@
+---
+  - name: Install semanage
+    yum: name=policycoreutils-python state=present
+    sudo: yes
+
+  - name: generate angular nginx configuration
+    template: src=app.conf.j2 dest=/etc/nginx/conf.d/app.conf
+    sudo: yes
+    notify: restart nginx
