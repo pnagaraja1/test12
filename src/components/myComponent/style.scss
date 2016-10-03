@@ -1,0 +1,24 @@
+div#landingTitle {
+    text-align:center;
+    padding-top:51px;
+    padding-bottom:51px
+}
+h1#titleText {
+    font-family:Lato-Thin;
+    font-size:40pt;
+    color:#666666
+}
+hr#titleLine {
+    width:150px; 
+    border-color:#00B4D2;
+    height:2px;display:inline-block;
+    -webkit-animation: titleLine 2.5s infinite;
+    -moz-animation:    titleLine 2.5s infinite;
+  	-o-animation:      titleLine 2.5s infinite;
+  	animation:         titleLine 2.5s infinite;
+}
+
+@-webkit-keyframes titleLine {
+	  0%   { width: 0px; }
+	  100%{ width:150px;}
+	}

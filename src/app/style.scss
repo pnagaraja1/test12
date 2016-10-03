@@ -1,0 +1,34 @@
+@font-face {
+    font-family: 'Lato-Thin';
+    src: url('font/Lato-Thin.woff') format('woff');
+}
+html, body {
+ height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+/* Wrapper for page content to push down footer */
+#wrapper, #wrap {
+  min-height: 83.5%;
+  height: auto;
+  /* Negative indent footer by its height */
+  margin: 0 auto -60px;
+  /* Pad bottom by footer height */
+  padding: 0 0 60px;
+}
+
+/* Set the fixed height of the footer here */
+#footer {
+  height: 56px;
+  background-color: #EEEEEE;
+}
+
+
+div#footerText{
+    text-align:center;
+    font-family:Lato-Thin;
+    font-weight:bolder;
+    color:#9E9E9E;
+    font-size:12pt;
+}

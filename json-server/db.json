@@ -1,0 +1,24 @@
+{
+  "items": [
+    {
+      "id": 3,
+      "name": "Hello!!",
+      "description": "This is a lovely item"
+    },
+    {
+      "id": 5,
+      "name": "Am a Checklist",
+      "description": "Item 2 description"
+    },
+    {
+      "name": "Rendered via Angular",
+      "description": "test description",
+      "id": 6
+    },
+    {
+      "id": 7,
+      "name": "Happy development!",
+      "description": "test description"
+    }
+  ]
+}
